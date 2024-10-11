@@ -264,12 +264,13 @@ const handleIngredientChange = (e) => {
             <label><input type="checkbox" value="Kanada Jambonu" onChange={handleIngredientChange} /> Kanada Jambonu </label>
             <label><input type="checkbox" value="Tavuk Izgara" onChange={handleIngredientChange} /> Tavuk Izgara </label>
             <label><input type="checkbox" value="Soğan" onChange={handleIngredientChange} /> Soğan </label>
-            <label><input type="checkbox" value="Zeytin" onChange={handleIngredientChange} /> Zeytin </label>
-            <label><input type="checkbox" value="Mantar" onChange={handleIngredientChange} /> Mantar </label>
+            <label><input type="checkbox" value="Sarımsak" onChange={handleIngredientChange} /> Sarımsak </label>
+            <label><input type="checkbox" value="Sucuk" onChange={handleIngredientChange} /> Sucuk </label>
             <label><input type="checkbox" value="Biber" onChange={handleIngredientChange} /> Biber</label>
-            <label><input type="checkbox" value="Mozzarella" onChange={handleIngredientChange}/> Mozzarella</label>
+            <label><input type="checkbox" value="Jalepeno" onChange={handleIngredientChange}/> Jalepeno</label>
             <label><input type="checkbox" value="Ananas" onChange={handleIngredientChange} /> Ananas</label>
             <label><input type="checkbox" value="Mısır" onChange={handleIngredientChange} /> Mısır </label>
+            <label><input type="checkbox" value="Domates" onChange={handleIngredientChange} /> Domates </label>
         </CheckboxGroup>
 </Section>
 

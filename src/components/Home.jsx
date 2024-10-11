@@ -7,23 +7,18 @@ const GlobalStyle = styled.div`
     padding: 0;
 
 
-  @media (max-width: 768px) {
-    body {
-      font-size: 14px; /* Genel font boyutu */
-    }
-
     h1 {
-      font-size: 30px; /* Başlık boyutu küçüldü */
+      font-size: 30px;
     }
 
     p {
-      font-size: 3rem; /* Açıklama metni boyutu küçüldü */
-      line-height: 70px; /* Satır aralığı ayarlandı */
-      margin: 50px; /* Üst ve alt boşluklar */
+      font-size: 3rem; 
+      line-height: 70px; 
+      margin: 50px; 
     }
 
     a {
-      padding: 1rem 2.5rem; /* Buton boyutu küçüldü */
+      padding: 1rem 2.5rem; 
     }
   }
 `;
@@ -65,9 +60,9 @@ const Description = styled.p`
   font-family: "Roboto Condensed", sans-serif;
   font-weight: 250;
   font-size: 6rem;
-  line-height: 100px; /* Ara boşluklar kapatıldı */
+  line-height: 100px; 
   color: white;
-  margin: 75px; /* Üst ve alt boşluklar */
+  margin: 75px; 
 `;
 
 const Button = styled.a`
@@ -82,7 +77,7 @@ const Button = styled.a`
   cursor: pointer;
 
   &:hover {
-    background-color: #cecece; /* Hover rengi */
+    background-color: #cecece; 
   }
 `;
 
