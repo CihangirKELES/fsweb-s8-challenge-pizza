@@ -202,7 +202,7 @@ const handleIngredientChange = (e) => {
     };
 
     
-    const handleSubmit = async (e) => { // async burada olmalı
+    const handleSubmit = async (e) => { 
       e.preventDefault();
     
       const orderData = {
@@ -217,12 +217,12 @@ const handleIngredientChange = (e) => {
       };
     
     try {
-      const response = await axios.post('https://reqres.in/api/users', orderData);
-      console.log('Order response:', response.data);
+      const response = await axios.post('https://reqres.in/api/pizza', orderData);
+      console.log('Sipariş Yanıtı:', response.data);
       navigate('/siparis-onayi', { state: { order: orderData } });
     
       } catch (error) {
-      console.error('Error submitting order:', error.response ? error.response.data : error.message);
+      console.error('Sipariş Gönderilirken hata oluştu:', error.response ? error.response.data : error.message);
       }
     };
 

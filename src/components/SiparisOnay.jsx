@@ -76,11 +76,12 @@ const Button = styled.button`
 
 const SiparisOnayi = () => {
   const location = useLocation();
+  const { order } = location.state || {}; 
+
   const navigate = useNavigate();
-  const { order } = location.state || {}; // Sipariş bilgilerini al
 
   const handleHomeClick = () => {
-    navigate('/'); // Anasayfaya yönlendirme
+    navigate('/'); 
   };
 
   if (!order) {
