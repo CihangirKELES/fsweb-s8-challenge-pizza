@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'; //axios ekledim.
 
 const Container = styled.div`
   position: relative;
@@ -200,9 +201,29 @@ const handleIngredientChange = (e) => {
         setTotalPrice(total * newQuantity);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        navigate('/siparis-onayi'); 
+    
+    const handleSubmit = async (e) => { // async burada olmalı
+      e.preventDefault();
+    
+      const orderData = {
+      pizza: {
+      size,
+      dough,
+      ingredients,
+      quantity,
+      note,
+      totalPrice: totalPrice.toFixed(2),
+      },
+      };
+    
+    try {
+      const response = await axios.post('https://reqres.in/api/users', orderData);
+      console.log('Order response:', response.data);
+      navigate('/siparis-onayi', { state: { order: orderData } });
+    
+      } catch (error) {
+      console.error('Error submitting order:', error.response ? error.response.data : error.message);
+      }
     };
 
     return (
@@ -299,6 +320,6 @@ const handleIngredientChange = (e) => {
     </Form>
 </Container>
     );
-};
+  };
 
 export default SiparisPizza;

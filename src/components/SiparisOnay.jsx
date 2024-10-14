@@ -1,85 +1,91 @@
+
+
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   padding: 50px 20px;
   text-align: center;
-  background-color: #D32F2F;
+  background-color: #d91d1d;
   color: white;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Logo = styled.div`
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  position: relative;
-  bottom: 15px;
+  position: absolute;
+  top: 50px;
 `;
 
 const Tagline = styled.h2`
-  font-size: 1.2rem;
-  color: #FFD700;
-  position: relative;
-  top:80px;
-`;
-const HorizontalLine = styled.hr` //çizgi
-  border: none;
-  border-top: 1px solid white;
-  width: 30%;
-  margin: 20px auto;
-`;
-const Title = styled.h1`
-  font-size: 2.5rem;
-  margin: 0;
-  position: relative;
-  top:70px;
-`;
-
-const OrderDetails = styled.div`
-  margin-top: 110px;
-`;
-
-const OrderTitle = styled.h3`
   font-size: 1.5rem;
-  margin-bottom: 60px;
+  color: #ffc107;
+  margin: 10px 0;
 `;
 
-const OrderInfo = styled.p`
-  font-size: 1.1rem;
-  margin-top: 40px;
-  text-align: left;
-  padding-left: 44%;
-
-  `;
+const Title = styled.h1`
+  font-size: 3rem;
+  margin: 20px 0;
+`;
 
 const Summary = styled.div`
   margin-top: 30px;
-  margin-left: 290px;
-  padding: 25px 80px;
-  border: 1px solid white;
-  display: inline-block;
+  padding: 30px 40px;
+  border: 2px solid white;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
   text-align: left;
 `;
 
 const SummaryItem = styled.p`
-  font-size: 20px;
+  font-size: 1.2rem;
+  color: white;
+  margin-bottom: 15px;
 `;
 
 const Total = styled.p`
-  font-size: 1.4rem;
-  position:relative;
-  bottom: 20px;
+  font-size: 1.6rem;
+  color: #ffc107;
+  text-align: center;
+  margin-top: 20px;
 `;
 
+const Button = styled.button`
+  padding: 12px 25px;
+  background-color: white;
+  color: #d32f2f;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-top: 15px;
+  position: relative;
+  left: 100px;
 
-const SiparisOnay = () => {
+  &:hover {
+  background-color: #f0a500;
+  }
+`;
 
-const navigate = useNavigate(); 
+const SiparisOnayi = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { order } = location.state || {}; // Sipariş bilgilerini al
 
-const handleHome = () => {
-    navigate('/'); 
+  const handleHomeClick = () => {
+    navigate('/'); // Anasayfaya yönlendirme
   };
+
+  if (!order) {
+    return <div>Yükleniyor...</div>;
+  }
 
   return (
     <Container>
@@ -87,37 +93,24 @@ const handleHome = () => {
       <Tagline>lezzetin yolda</Tagline>
       <Title>SİPARİŞ ALINDI</Title>
 
-      <OrderDetails>
-      <HorizontalLine />
-        <OrderTitle>Position Absolute Acı Pizza</OrderTitle>
-        <OrderInfo>Boyut: <strong>L</strong></OrderInfo>
-        <OrderInfo>Hamur: <strong>Süpper İnce</strong></OrderInfo>
-        <OrderInfo>Ek Malzemeler: <strong>Pepperoni,<br></br>Sosis, Mısır, Ananas, <br></br>Jalepeno</strong></OrderInfo>
-        
-      </OrderDetails>
 
       <Summary>
-        <Total>Sipariş Toplamı</Total>
-        <SummaryItem>Seçimler: 25.00₺</SummaryItem>
-        <SummaryItem>Toplam: 110.50₺</SummaryItem>
+        <SummaryItem>Pizza Boyutu: {order.pizza.size}</SummaryItem>
+        <SummaryItem>Hamur: {order.pizza.dough}</SummaryItem>
+        <SummaryItem>Malzemeler: {order.pizza.ingredients.join(', ')}</SummaryItem>
+        <SummaryItem>Miktar: {order.pizza.quantity}</SummaryItem>
+        <SummaryItem>Sipariş Notu: {order.pizza.note}</SummaryItem>
+        <SummaryItem>Sipariş Toplamı: {order.pizza.totalPrice}</SummaryItem>
+        <Total>Toplam: {order.pizza.totalPrice}₺</Total>
+        <Button onClick={handleHomeClick}>Anasayfaya Dön</Button>
       </Summary>
-      
-      <button style={{ 
-    backgroundColor: "#ffd400",
-    padding: "1rem 4.5rem",
-    fontSize: "1rem",
-    color: "#333", 
-    textDecoration: "none",
-    fontWeight: "bold",
-    borderRadius: "50px",
-    position: "relative", 
-    top: "150px",
-    right: "295px",
-    border: "none",
-    cursor: "pointer",}} 
-    onClick={handleHome}>ANASAYFAYA DÖN</button>
-   
-</Container>
-);};
 
-export default SiparisOnay;
+
+    </Container>
+  );
+};
+
+export default SiparisOnayi;
+
+      
+     
